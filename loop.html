@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>loopFunction</title>
+</head>
+<body>
+    <h1>Задание в консоли</h1>
+
+    <script>
+        "use strict";
+
+        let loop = {
+            times: 0,
+            init: function() {
+                this.times = parseInt(prompt("Задайте число повторения функции"));
+                this.callback = prompt("Введите функцию");
+                let ask = this.callback;
+                if (this.callback === '') {
+                    alert("Функция не передана! Отмена скрипта.");
+                    console.log("Скрипт отменен");
+                } else {
+                    loop.success(ask);
+                }
+            },
+            success: function (ask) {
+                for (let i = 0; i < this.times; i++){
+                    console.log(i+1, ask);
+                }
+            },
+
+        };
+
+        window.onload = function(){
+            loop.init();
+        };
+    </script>
+</body>
+</html>
