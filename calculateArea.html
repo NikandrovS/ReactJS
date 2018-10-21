@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>calculateArea</title>
+</head>
+<body>
+<h1>Задание в консоли</h1>
+
+<script>
+    "use strict";
+
+    let calculate = {
+        area: 0,
+        input: [],
+        init: function() {
+            let number;
+            do {
+                number = prompt('Введи число');
+                if ( number === "" ) {
+                    break;
+                } else {
+                    this.input.push(parseInt(number));
+                }
+            } while ( this.input.length !== 3);
+
+            this.estimation();
+        },
+        estimation: function () {
+            let [a, b, c] = this.input;
+            this.parseFigure(a, b, c);
+        },
+        parseFigure: function(a, b, c) {
+            switch ( this.input.length ) {
+                case 3 :
+                    let Z = 0;
+                    this.figure = 'Треугольник';
+                    Z = ( a + b + c ) / 2;
+                    this.area = Math.sqrt( Z * ( Z - a ) * ( Z - b ) * ( Z - c ) );
+                    if ( isNaN(this.area) ) {
+                        alert('Стороны треугольника введены неверно!');
+                    }
+                    break;
+                case 2 :
+                    if ( a === b) {
+                        this.figure = 'Квдарат';
+                    } else {
+                    this.figure = 'Прямоугольник';}
+                    this.area = a * b;
+                    break;
+                default:
+                    console.log('Ошибка вычисления! Введите 2 или 3 числа. ');
+            }
+            this.result();
+        },
+        result: function () {
+            let text = `Площадь равна: ${this.area} \n Фигура: ${this.figure} \n Введено ${this.input.length} числа: `;
+            if ( this.input.length === 2 ) {
+                console.log(text + this.input[0], 'и ' + this.input[1]);
+            } else {
+                console.log(text + this.input[0] + ', ' + this.input[1] + ' и ' + this.input[2]);
+            }
+        },
+    };
+
+    window.onload = function(){
+        calculate.init();
+    };
+
+</script>
+</body>
+</html>
