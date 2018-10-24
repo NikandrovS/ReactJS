@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Classes</title>
+</head>
+<body>
+<h1>Задание в консоли</h1>
+
+<script>
+    "use strict";
+
+    class Human
+    {
+        constructor(name, age, dateOfBirth)
+        {
+            this.name = name;
+            this.age = age;
+            this.date = dateOfBirth;
+        }
+        displayInfo()
+        {
+            console.log('Имя:', this.name );
+            console.log('Возраст: ' + this.age );
+            console.log('Дата рождения: ' + this.date);
+        }
+    }
+
+    class Employee extends Human
+    {
+        constructor(name, age, dateOfBirth, salary, department)
+        {
+            super(name, age, dateOfBirth);
+            this.salary = salary;
+            this.department = department;
+        }
+        displayInfo()
+        {
+            super.displayInfo();
+            console.log('Зарплата: ' + this.salary );
+            console.log('Отдел: ' + this.department);
+        }
+    }
+
+    class Manager extends Employee
+    {
+        constructor(name, age, dateOfBirth, salary, department)
+        {
+            super(name, age, dateOfBirth, salary, department);
+            this.people = [];
+        }
+    }
+
+    class Developer extends Employee
+    {
+        constructor(name, age, dateOfBirth, salary, department, chief)
+        {
+            super(name, age, dateOfBirth, salary, department);
+            this.chief = chief;
+        }
+        displayInfo()
+        {
+            super.displayInfo();
+            console.log('Руководитель:', this.chief.name);
+        }
+    }
+    
+
+    let add = {
+        init: function () {
+
+            let person1 = new Manager('Sergio', 21, '26.02.1998', 60000, 'Production');
+            console.log(person1);
+            person1.displayInfo();
+
+            let person2 = new Developer('Rostislav', 20, '24.04.1998', 50000, 'Production', person1);
+            person1.people.push(person2);
+            console.log(person2);
+            person2.displayInfo();
+
+            let person3 = new Developer('Roman', 19, '24.11.1998', 45000, 'Production', person1);
+            person1.people.push(person3);
+            console.log(person3);
+            person3.displayInfo();
+
+            console.log('\nВ подчинении у руководителя', person1.name, `${person1.people.length} человека`);
+        },
+    };
+
+    window.onload = function(){
+        add.init();
+    };
+
+</script>
+</body>
+</html>

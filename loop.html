@@ -14,21 +14,19 @@
         "use strict";
 
         let loop = {
-            times: 0,
             init: function() {
                 this.times = parseInt(prompt("Задайте число повторения функции"));
                 this.callback = prompt("Введите функцию");
-                let ask = this.callback;
                 if (this.callback === '') {
                     alert("Функция не передана! Отмена скрипта.");
                     console.log("Скрипт отменен");
                 } else {
-                    loop.success(ask);
+                    loop.success();
                 }
             },
-            success: function (ask) {
+            success: function () {
                 for (let i = 0; i < this.times; i++){
-                    console.log(i+1, ask);
+                    console.log(i+1, this.callback);
                 }
             },
 
@@ -37,6 +35,7 @@
         window.onload = function(){
             loop.init();
         };
+
     </script>
 </body>
 </html>
