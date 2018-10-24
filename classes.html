@@ -13,8 +13,6 @@
 <script>
     "use strict";
 
-    let people = [];
-
     class Human
     {
         constructor(name, age, dateOfBirth)
@@ -52,7 +50,7 @@
         constructor(name, age, dateOfBirth, salary, department)
         {
             super(name, age, dateOfBirth, salary, department);
-            this.people = people;
+            this.people = [];
         }
     }
 
@@ -79,16 +77,16 @@
             person1.displayInfo();
 
             let person2 = new Developer('Rostislav', 20, '24.04.1998', 50000, 'Production', person1);
-            people.push(person2);
+            person1.people.push(person2);
             console.log(person2);
             person2.displayInfo();
 
             let person3 = new Developer('Roman', 19, '24.11.1998', 45000, 'Production', person1);
-            people.push(person3);
+            person1.people.push(person3);
             console.log(person3);
             person3.displayInfo();
 
-            console.log('\nВ подчинении у руководителя', person1.name, `${people.length} человека`);
+            console.log('\nВ подчинении у руководителя', person1.name, `${person1.people.length} человека`);
         },
     };
 
